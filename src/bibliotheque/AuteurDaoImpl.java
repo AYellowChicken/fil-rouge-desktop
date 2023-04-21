@@ -8,7 +8,7 @@ import java.util.List;
 public class AuteurDaoImpl implements AuteurDao  {
 
 	@Override
-	public Auteur findByName(String name) throws Exception {
+	public List<Livre> findByName(String name) throws Exception {
 		Connection conn = Connexion.connexion();
 		
 		Statement st = conn.createStatement();

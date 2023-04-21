@@ -2,7 +2,7 @@ package bibliotheque;
 
 import java.util.List;
 
-public class AbonneDaoImpl  implements AbonneDao{
+public class AbonneDaoImpl implements AbonneDao{
 
 	@Override
 	public Abonne findById(int id) {

@@ -25,15 +25,13 @@ public class Login {
 		Statement stmt = con.createStatement();
 
 		// préparation de la requête
-		ResultSet rs = stmt.executeQuery("SELECT count(numabonne) FROM abonne WHERE numabonne=" + saisie);
-
-		rs.next();
-
-		if (rs.getInt(1) != 1) {
+		ResultSet rs = stmt.executeQuery("SELECT count(numabonne), nomab FROM abonne WHERE numabonne=" + saisie +" GROUP BY nomab");
+		
+		if (rs.next() == false) {
 			System.out.println("Vous n'existez pas");
 			System.exit(0);
 		} else {
-			System.out.println("Bonjour");
+			System.out.println("Bonjour " + rs.getString(2));
 		}
 		
 	}

@@ -2,6 +2,12 @@ package bibliotheque;
 
 public class Livre {
 	
+	private int isbnLivre;
+    private String titre;
+    private int numAuteur;
+    private String editeur;
+    private int nbrePages;
+    
 	public Livre(int isbnLivre, String titre, int numAuteur, String editeur, int nbrePages) {
 		super();
 		this.isbnLivre = isbnLivre;
@@ -40,10 +46,4 @@ public class Livre {
 	public void setNbrePages(int nbrePages) {
 		this.nbrePages = nbrePages;
 	}
-	
-	private int isbnLivre;
-    private String titre;
-    private int numAuteur;
-    private String editeur;
-    private int nbrePages;
 }

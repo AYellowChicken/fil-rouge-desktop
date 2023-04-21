@@ -6,11 +6,11 @@ import java.sql.Statement;
 
 public class Connexion {
 
-	static Connection conn;
 	final static String DRIVER = "org.postgresql.Driver";
 	final static String URL = "jdbc:postgresql://localhost:5432/FilRougeBibliotheque";
 	final static String USR = "postgres";
 	final static String PWD = "admin";
+	static Connection conn;
 
 	public static Connection connexion() throws Exception {
 		if (conn == null) {
@@ -20,9 +20,6 @@ public class Connexion {
 
 				// créer l'objet de connexion
 				conn = DriverManager.getConnection(URL, USR, PWD);
-
-				// retourner l'objet de connexion
-				System.out.println("Login");
 
 			} catch (Exception e) {
 				e.printStackTrace();

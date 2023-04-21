@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface AuteurDao {
 	
-	Auteur findByName(String name) throws Exception;
+	List<Livre> findByName(String name) throws Exception;
 	
     void findAll();
     void save(Auteur auteur);

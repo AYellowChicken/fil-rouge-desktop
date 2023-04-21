@@ -1,15 +1,17 @@
 package bibliotheque;
 
 public class Auteur {
+	
+	private int numAuteur;
+    private String nomAu;
+    private String prenomAu;
+    
 	public Auteur(int numAuteur, String nomAu, String prenomAu) {
 		super();
 		this.numAuteur = numAuteur;
 		this.nomAu = nomAu;
 		this.prenomAu = prenomAu;
 	}
-	private int numAuteur;
-    private String nomAu;
-    private String prenomAu;
     
 	public int getNumAuteur() {
 		return numAuteur;
