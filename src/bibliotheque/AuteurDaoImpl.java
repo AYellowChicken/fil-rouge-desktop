@@ -1,19 +1,35 @@
 package bibliotheque;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 public class AuteurDaoImpl implements AuteurDao  {
 
 	@Override
-	public Auteur findById(int id) {
-		// TODO Auto-generated method stub
+	public Auteur findByName(String name) throws Exception {
+		Connection conn = Connexion.connexion();
+		
+		Statement st = conn.createStatement();
+		
+		ResultSet rs = st.executeQuery("SELECT nomAu,  FROM auteur WHERE nomAu="+name);
+		
+		rs.next();
+		
+		if (rs.getInt(1) != 1) {
+			System.out.println("Vous n'existez pas");
+			System.exit(0);
+		} else {
+			System.out.println("Bonjour");
+		}
+		
 		return null;
 	}
 
 	@Override
-	public List<Auteur> findAll() {
+	public void findAll() {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
