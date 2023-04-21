@@ -5,28 +5,35 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Connexion {
+	
+	static Connection conn;
+	final static String DRIVER = "org.postgresql.Driver";
+	final static String URL = "jdbc:postgresql://localhost:5432/FilRougeBibliotheque";
+	final static String USR = "postgres";
+	final static String PWD = "admin";
 
-	public static void connexion() throws Exception {
+	public static Connection connexion() throws Exception {
 		try {
-			// étape 1: charger la classe de driver
+			// charger la classe de driver
+			Class.forName(DRIVER);
 
-			Class.forName("org.postgresql.Driver");
-			// étape 2: créer l'objet de connexion
+			// créer l'objet de connexion
+			conn = DriverManager.getConnection(URL,USR,PWD);
 
-			Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/FilRougeBibliotheque", "postgres", "admin");
-			// étape 3: créer l'objet statement
-
-			Statement stmt = conn.createStatement();
-			// étape 4: exécuter la requête
+			// retourner l'objet de connexion
+			System.out.println("Login");
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return conn;
 	}
 
 	public static void deconnexion(Connection conn) throws Exception {
 		try {
 			conn.close();
+			System.out.println("Logout");
 		} catch (Exception e) {
 			System.out.println(e);
 		}
