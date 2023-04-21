@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Connexion {
-	
+
 	static Connection conn;
 	final static String DRIVER = "org.postgresql.Driver";
 	final static String URL = "jdbc:postgresql://localhost:5432/FilRougeBibliotheque";
@@ -13,30 +13,22 @@ public class Connexion {
 	final static String PWD = "admin";
 
 	public static Connection connexion() throws Exception {
-		try {
-			// charger la classe de driver
-			Class.forName(DRIVER);
+		if (conn == null) {
+			try {
+				// charger la classe de driver
+				Class.forName(DRIVER);
 
-			// créer l'objet de connexion
-			conn = DriverManager.getConnection(URL,USR,PWD);
+				// créer l'objet de connexion
+				conn = DriverManager.getConnection(URL, USR, PWD);
 
-			// retourner l'objet de connexion
-			System.out.println("Login");
+				// retourner l'objet de connexion
+				System.out.println("Login");
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} 
 		
 		return conn;
 	}
-
-	public static void deconnexion(Connection conn) throws Exception {
-		try {
-			conn.close();
-			System.out.println("Logout");
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-	}
-
 }
