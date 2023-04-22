@@ -7,6 +7,17 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class Login {
+	
+	private static int id;
+	
+	public Login() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public static int getId() {
+		return id;
+	}
 
 	public static void main(String[] args) throws Exception {
 		// demander le numéro d'abonné à l'utilisateur
@@ -16,7 +27,7 @@ public class Login {
 		java.util.Scanner sc = Scanner.getSc();
 
 		// definir saisie utilisateur
-		int saisie = sc.nextInt();
+		id = sc.nextInt();
 
 		// appel de la méthode connexion() de l'objet Connexion
 		Connection con = Connexion.connexion();
@@ -25,7 +36,7 @@ public class Login {
 		Statement stmt = con.createStatement();
 
 		// préparation de la requête
-		ResultSet rs = stmt.executeQuery("SELECT count(numabonne), nomab FROM abonne WHERE numabonne=" + saisie +" GROUP BY nomab");
+		ResultSet rs = stmt.executeQuery("SELECT count(numabonne), nomab FROM abonne WHERE numabonne=" + id +" GROUP BY nomab");
 		
 		if (rs.next() == false) {
 			System.out.println("Vous n'existez pas");
