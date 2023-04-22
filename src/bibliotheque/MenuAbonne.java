@@ -8,17 +8,16 @@ public class MenuAbonne {
 	int saisieChoixCritere;
 	int saisieCritereISBN;
 	String saisieCritereString;
-	java.util.Scanner sc = Scanner.getSc();
-
+	static java.util.Scanner sc = Scanner.getSc();
+	
 	public MenuAbonne() {
 		super();
 	}
 
 	public static void main(String[] args) throws Exception {
 
-		// login
-		Login login = new Login();
-		login.main(args);
+		// appel static de la classe login
+		Login.main(args);
 
 		// menu
 		MenuAbonne menu = new MenuAbonne();
