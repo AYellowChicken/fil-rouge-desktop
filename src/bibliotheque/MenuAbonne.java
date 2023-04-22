@@ -57,7 +57,7 @@ public class MenuAbonne {
 
 	public void Critere() throws Exception {
 
-		System.out.println("1 : Par auteur\n2 : Par titre\n3 Par ISBN\n4 Consultation");
+		System.out.println("1 : Par auteur\n2 : Par titre\n3 : Par ISBN\n4 : Consultation");
 
 		try {
 			int select = sc.nextInt();
