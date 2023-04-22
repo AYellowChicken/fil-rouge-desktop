@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
-import java.util.*;
-
 public class Login {
 
 	private static int id;

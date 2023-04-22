@@ -25,7 +25,7 @@ public class EmpruntDaoImpl implements EmpruntDao {
 
 		ResultSet rs = st.executeQuery("SELECT * FROM emprunt WHERE numabonne =" + id);
 
-		List<Emprunt> le = new ArrayList();
+		List<Emprunt> le = new ArrayList<Emprunt>();
 
 		while (rs.next()) {
 			int numAbonne = rs.getInt(1);

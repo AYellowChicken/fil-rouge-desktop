@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.List;
 
 public class LivreDaoImpl implements LivreDao {
@@ -21,7 +19,7 @@ public class LivreDaoImpl implements LivreDao {
 				"SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
 						+ "ON auteur.numauteur = livre.numauteur" + " WHERE nomau like '" + authorName + "'");
 
-		List<Livre> ll = new ArrayList();
+		List<Livre> ll = new ArrayList<Livre>();
 
 		while (rs.next()) {
 			int isbnLivre = rs.getInt(1);
@@ -48,7 +46,7 @@ public class LivreDaoImpl implements LivreDao {
 				"SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
 						+ "ON auteur.numauteur = livre.numauteur" + " WHERE titre like '" + title + "'");
 
-		List<Livre> ll = new ArrayList();
+		List<Livre> ll = new ArrayList<Livre>();
 
 		while (rs.next()) {
 			int isbnLivre = rs.getInt(1);
@@ -74,7 +72,7 @@ public class LivreDaoImpl implements LivreDao {
 				"SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
 						+ "ON auteur.numauteur = livre.numauteur" + " WHERE ISBNLivre =" + isbn);
 
-		List<Livre> ll = new ArrayList();
+		List<Livre> ll = new ArrayList<Livre>();
 
 		while (rs.next()) {
 			int isbnLivre = rs.getInt(1);
