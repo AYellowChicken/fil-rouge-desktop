@@ -33,7 +33,5 @@ public class Login {
 		} else {
 			System.out.println("Bonjour " + rs.getString(2));
 		}
-		
 	}
-
 }

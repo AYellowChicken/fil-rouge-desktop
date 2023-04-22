@@ -33,5 +33,4 @@ public class EmpruntDaoImpl implements EmpruntDao {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

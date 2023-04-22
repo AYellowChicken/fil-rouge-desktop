@@ -14,6 +14,17 @@ public class MenuAbonne {
 		super();
 	}
 
+	public static void main(String[] args) throws Exception {
+
+		// login
+		Login login = new Login();
+		login.main(args);
+
+		// menu
+		MenuAbonne menu = new MenuAbonne();
+		menu.Choix();
+	}
+	
 	public void Choix() throws Exception {
 		System.out.println("1 : Consulter la liste des emprunts\n2 : Chercher un livre");
 
@@ -62,19 +73,5 @@ public class MenuAbonne {
 			System.out.println("Choix 1, 2, 3 ou 4");
 			Critere();
 		}
-
 	}
-
-	public static void main(String[] args) throws Exception {
-
-		// login
-		Login login = new Login();
-		login.main(args);
-
-		// menu
-		MenuAbonne menu = new MenuAbonne();
-		menu.Choix();
-
-	}
-
 }

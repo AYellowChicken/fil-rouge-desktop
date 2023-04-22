@@ -8,5 +8,4 @@ public interface LivreDao {
     void save(Livre book);
     void update(Livre book);
     void delete(Livre book);
-    
 }

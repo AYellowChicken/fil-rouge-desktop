@@ -45,5 +45,4 @@ public class LivreDaoImpl implements LivreDao {
 		// TODO Auto-generated method stub
 
 	}
-
 }

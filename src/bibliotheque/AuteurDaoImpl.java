@@ -49,5 +49,4 @@ public class AuteurDaoImpl implements AuteurDao  {
 		// TODO Auto-generated method stub
 		
 	}
-
 }
