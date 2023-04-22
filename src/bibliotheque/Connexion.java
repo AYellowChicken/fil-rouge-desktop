@@ -24,8 +24,8 @@ public class Connexion {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		} 
-		
+		}
+
 		return conn;
 	}
 }

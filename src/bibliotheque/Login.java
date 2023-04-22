@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class Login {
-	
+
 	private static int id;
-	
+
 	public Login() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,8 +36,9 @@ public class Login {
 		Statement stmt = con.createStatement();
 
 		// préparation de la requête
-		ResultSet rs = stmt.executeQuery("SELECT count(numabonne), nomab FROM abonne WHERE numabonne=" + id +" GROUP BY nomab");
-		
+		ResultSet rs = stmt
+				.executeQuery("SELECT count(numabonne), nomab FROM abonne WHERE numabonne=" + id + " GROUP BY nomab");
+
 		if (rs.next() == false) {
 			System.out.println("Vous n'existez pas");
 			System.exit(0);
