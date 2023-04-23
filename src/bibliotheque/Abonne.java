@@ -56,4 +56,20 @@ public class Abonne {
 	public void setTelephoneAb(String telephoneAb) {
 		this.telephoneAb = telephoneAb;
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+			" numAbonne='" + getNumAbonne() + "'" +
+			", nomAb='" + getNomAb() + "'" +
+			", prenomAb='" + getPrenomAb() + "'" +
+			", addressAb='" + getAddressAb() + "'" +
+			", telephoneAb='" + getTelephoneAb() + "'" +
+			"}";
+	}
+
+	public void prettyPrint() {
+		System.out.printf("Abonné n°%d - %s %s, habitant à %s - Tel : %s\n", this.getNumAbonne(), this.getPrenomAb(), this.getNomAb(), this.getAddressAb(), this.getTelephoneAb());
+	}
+
 }

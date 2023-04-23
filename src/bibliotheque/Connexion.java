@@ -12,7 +12,7 @@ public class Connexion {
 	final static String PWD = "admin";
 	static Connection conn;
 
-	public static Connection connexion() throws Exception {
+	public static Connection connexion() {
 		if (conn == null) {
 			try {
 				// charger la classe de driver
