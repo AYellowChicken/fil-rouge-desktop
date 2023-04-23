@@ -1,8 +1,8 @@
 package bibliotheque;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +13,10 @@ public class LivreDaoImpl implements LivreDao {
 
 		Connection conn = Connexion.connexion();
 
-		Statement st = conn.createStatement();
-
-		ResultSet rs = st.executeQuery(
-				"SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
-						+ "ON auteur.numauteur = livre.numauteur" + " WHERE nomau like '" + authorName + "'");
+		PreparedStatement ps = conn.prepareStatement("SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
+		+ "ON auteur.numauteur = livre.numauteur" + " WHERE nomau LIKE '" + authorName + "'");
+		
+		ResultSet rs = ps.executeQuery();
 
 		List<Livre> ll = new ArrayList<Livre>();
 
@@ -40,11 +39,10 @@ public class LivreDaoImpl implements LivreDao {
 
 		Connection conn = Connexion.connexion();
 
-		Statement st = conn.createStatement();
+		PreparedStatement ps = conn.prepareStatement("SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
+		+ "ON auteur.numauteur = livre.numauteur" + " WHERE titre LIKE '" + title + "'");
 
-		ResultSet rs = st.executeQuery(
-				"SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
-						+ "ON auteur.numauteur = livre.numauteur" + " WHERE titre like '" + title + "'");
+		ResultSet rs = ps.executeQuery();
 
 		List<Livre> ll = new ArrayList<Livre>();
 
@@ -66,11 +64,10 @@ public class LivreDaoImpl implements LivreDao {
 	public List<Livre> findByIsbn(int isbn) throws Exception {
 		Connection conn = Connexion.connexion();
 
-		Statement st = conn.createStatement();
+		PreparedStatement ps = conn.prepareStatement("SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
+		+ "ON auteur.numauteur = livre.numauteur" + " WHERE ISBNLivre =" + isbn);
 
-		ResultSet rs = st.executeQuery(
-				"SELECT ISBNLivre, titre, livre.numauteur, editeur, nbrepages FROM auteur INNER JOIN livre "
-						+ "ON auteur.numauteur = livre.numauteur" + " WHERE ISBNLivre =" + isbn);
+		ResultSet rs = ps.executeQuery();
 
 		List<Livre> ll = new ArrayList<Livre>();
 
@@ -93,9 +90,9 @@ public class LivreDaoImpl implements LivreDao {
 
 		Connection conn = Connexion.connexion();
 
-		Statement st = conn.createStatement();
+		PreparedStatement ps = conn.prepareStatement("SELECT * FROM livre");
 
-		ResultSet rs = st.executeQuery("SELECT * FROM livre");
+		ResultSet rs = ps.executeQuery();
 
 		while (rs.next()) {
 			System.out.printf("ISBN:%d,\nTitre:%s,\nNuméroAuteur:%d, \nEditeur:%s, \nNmbrePages:%d\n\n", rs.getInt(1),

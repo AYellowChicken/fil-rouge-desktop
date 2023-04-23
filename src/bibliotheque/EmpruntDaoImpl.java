@@ -1,8 +1,8 @@
 package bibliotheque;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.*;
 
 public class EmpruntDaoImpl implements EmpruntDao {
@@ -21,9 +21,9 @@ public class EmpruntDaoImpl implements EmpruntDao {
 
 		Connection conn = Connexion.connexion();
 
-		Statement st = conn.createStatement();
+		PreparedStatement st = conn.prepareStatement("SELECT * FROM emprunt WHERE numabonne =" + id);
 
-		ResultSet rs = st.executeQuery("SELECT * FROM emprunt WHERE numabonne =" + id);
+		ResultSet rs = st.executeQuery();
 
 		List<Emprunt> le = new ArrayList<Emprunt>();
 
