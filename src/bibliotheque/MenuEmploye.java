@@ -176,7 +176,6 @@ public class MenuEmploye {
                         montrerCRUD("livre");
                         choix2 = sc.nextInt();
                         sc.nextLine();
-                        choix2 = sc.nextInt(); 
                         switch(choix2) {
                             case 1:
                                 consulteLivre();
