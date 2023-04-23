@@ -157,7 +157,6 @@ public class MenuEmploye {
             } catch (NoSuchElementException e) {
                 System.out.println("Saisie de type invalide.");
                 sc.nextLine();
-                montrerAccueil();
             }
         } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
 
