@@ -1,10 +1,13 @@
 package bibliotheque;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface LivreDao {
 	void findAll() throws Exception;
 
+	List<Livre> consulte(HashMap<String, String> criteres);
+	
 	void save(Livre book);
 
 	void update(Livre book);

@@ -56,4 +56,20 @@ public class Livre {
 	public void setNbrePages(int nbrePages) {
 		this.nbrePages = nbrePages;
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+			" isbnLivre='" + getIsbnLivre() + "'" +
+			", titre='" + getTitre() + "'" +
+			", numAuteur='" + getNumAuteur() + "'" +
+			", editeur='" + getEditeur() + "'" +
+			", nbrePages='" + getNbrePages() + "'" +
+			"}";
+	}
+
+	public void prettyPrint() {
+		System.out.printf("ISBN %d : %s, écrit par l'auteur de n°%d, édité par %s et avec %d pages\n", this.getIsbnLivre(), this.getTitre(), this.getNumAuteur(), this.getEditeur(), this.getNbrePages());
+	}
+
 }

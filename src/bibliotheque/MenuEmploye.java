@@ -25,7 +25,25 @@ public class MenuEmploye {
         ABONNEFIELDS.put("prenom abonné", "prenomab");
         ABONNEFIELDS.put("adresse abonné", "adresseab");
         ABONNEFIELDS.put("téléphone abonné", "telephoneab");
+    }    
+    
+    static LinkedHashMap<String, String> AUTEURFIELDS = new LinkedHashMap<>();
+    static { 
+        AUTEURFIELDS.put("Numéro auteur", "numauteur");
+        AUTEURFIELDS.put("nom auteur", "nomau");
+        AUTEURFIELDS.put("prenom auteur", "prenomau");
+        AUTEURFIELDS.put("nationalité auteur", "nationaliteau");
+    }    
+    
+    static LinkedHashMap<String, String> LIVREFIELDS = new LinkedHashMap<>();
+    static { 
+        LIVREFIELDS.put("ISBN livre", "isbnlivre");
+        LIVREFIELDS.put("Titre", "titre");
+        LIVREFIELDS.put("Numéro auteur", "numauteur");
+        LIVREFIELDS.put("Editeur", "editeur");
+        LIVREFIELDS.put("Nombre de pages", "nbrepages");
     }
+
 
     public static void montrerAccueil() {
         System.out.println("-Consulter / modifier / ajouter / supprimer abonné (1)");
@@ -70,7 +88,19 @@ public class MenuEmploye {
     }
 
     public static void consulteAuteur() {
-
+        LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
+        String critere;
+        for (Map.Entry<String, String> entry : AUTEURFIELDS.entrySet()) {
+            System.out.println("Critère " + entry.getKey() + " ?");
+            critere = sc.nextLine();
+            if (!critere.isEmpty()) {
+                criteres.put(entry.getValue(), critere);
+            }
+        }
+        List<Auteur> auteurs = auteurDao.consulte(criteres);
+        for (Auteur auteur: auteurs) {
+            auteur.prettyPrint();
+        }
     }
     
     public static void modifieAuteur() {
@@ -86,6 +116,19 @@ public class MenuEmploye {
     }
 
     public static void consulteLivre() {
+        LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
+        String critere;
+        for (Map.Entry<String, String> entry : LIVREFIELDS.entrySet()) {
+            System.out.println("Critère " + entry.getKey() + " ?");
+            critere = sc.nextLine();
+            if (!critere.isEmpty()) {
+                criteres.put(entry.getValue(), critere);
+            }
+        }
+        List<Livre> livres = livreDao.consulte(criteres);
+        for (Livre livre: livres) {
+            livre.prettyPrint();
+        }
 
     }
     

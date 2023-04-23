@@ -3,8 +3,12 @@ package bibliotheque;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 public class LivreDaoImpl implements LivreDao {
 
@@ -99,6 +103,74 @@ public class LivreDaoImpl implements LivreDao {
 					rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5));
 		}
 	}
+
+	@Override
+	public List<Livre> consulte(HashMap<String, String> criteres) {
+		Connection conn = Connexion.connexion();
+		
+		// Build SQL query
+		String sqlRequest = "SELECT isbnlivre, titre, numauteur, editeur, nbrepages FROM livre";
+		if (!criteres.isEmpty()) {
+			sqlRequest += " WHERE ";
+
+			Iterator<Map.Entry<String, String>> iterator = criteres.entrySet().iterator();
+			while (iterator.hasNext()) {
+				Map.Entry<String, String> entry = iterator.next();
+				if (entry.getKey().equals("isbnlivre") || entry.getKey().equals("numauteur") || entry.getKey().equals("nbrepages")){ 
+					sqlRequest += entry.getKey() + " = " + entry.getValue();
+				} else {
+					sqlRequest += "LOWER(" + entry.getKey() + ") LIKE LOWER('%" + entry.getValue() + "%')";
+				}
+
+				// Check if there is a next element
+				if (iterator.hasNext()) {
+					sqlRequest += " AND ";
+				}
+			}
+		}
+
+		// Execute SQL query (maximum of 3 times)
+		int maxRetries = 3;
+		int retries = 0;
+		boolean success = false;
+		List<Livre> listLivre = new ArrayList<Livre>();
+		while(!success && retries < maxRetries) {
+			try {
+				PreparedStatement ps = conn.prepareStatement(sqlRequest);
+				ResultSet rs = ps.executeQuery();
+
+				while (rs.next()) {
+					int isbnLivre = rs.getInt("isbnlivre");
+					String titre = rs.getString("titre");
+					int numauteur = rs.getInt("numauteur");
+					String editeur = rs.getString("editeur");
+					int nbrepages = rs.getInt("nbrepages");
+
+					Livre livre = new Livre(isbnLivre, titre, numauteur, editeur, nbrepages);
+					listLivre.add(livre);
+				}
+				success = true;
+
+			} catch (SQLException e) {
+				retries++;
+				if (retries == maxRetries) {
+					System.err.println("Query failed after " + maxRetries + " retries");
+					e.printStackTrace();
+					System.exit(-1);
+				} else {
+					System.err.println("Query failed, retrying (" + retries + " of " + maxRetries + ")");
+					try {
+						Thread.sleep(1000); // Wait for 1 second before retrying
+					} catch (InterruptedException ie) {
+						Thread.currentThread().interrupt(); // Restore interrupted status and continue
+					}
+				}
+			}
+		}
+
+		return listLivre;
+	}
+
 
 	@Override
 	public void save(Livre book) {
