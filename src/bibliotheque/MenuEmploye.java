@@ -1,9 +1,9 @@
 package bibliotheque;
 
-import java.util.InputMismatchException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 // import java.util.function.Function;
 // Map<String, Function<Object, Void>> requestHandlers = new HashMap<>();
@@ -117,81 +117,81 @@ public class MenuEmploye {
 
     public static void main(String[] args) {
         
-        montrerAccueil();
-        
+        // Choose operation 1
         int choix = 0;
         do {
+            montrerAccueil();
             try {
                 choix = sc.nextInt();
-                int choix2 = 0;
+            } catch (NoSuchElementException e) {
+                System.out.println("Saisie de type invalide.");
+                sc.nextLine();
+                montrerAccueil();
+            }
+        } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
+
+        int choix2 = 0;
+        do {
+            try {
                 switch(choix) {
                     case 1: // Abonné
                         montrerCRUD("abonné");
-                        do {
-                            choix2 = sc.nextInt();
-                            sc.nextLine();
-                            switch(choix2) {
-                                case 1:
-                                    consulteAbonne();
-                                    break;
-                                case 2:
-                                    modifieAbonne();
-                                    break;
-                                case 3:
-                                    ajouteAbonne();
-                                    break;
-                                case 4:
-                                    supprimeAbonne();
-                                    break;
-                            }
-
-                            break;
-                        } while (choix2 != 1 && choix2 != 2 && choix2 != 3 && choix2 != 4); //TODO : test if inputmismatch puts you back in the first while or the second.
+                        choix2 = sc.nextInt();
+                        sc.nextLine(); // clean sc before we get next values
+                        switch(choix2) {
+                            case 1:
+                                consulteAbonne();
+                                break;
+                            case 2:
+                                modifieAbonne();
+                                break;
+                            case 3:
+                                ajouteAbonne();
+                                break;
+                            case 4:
+                                supprimeAbonne();
+                                break;
+                        }
                         break;
                     case 2: // Auteur
                         montrerCRUD("auteur");
                         choix2 = sc.nextInt(); 
-                        do {
-                            choix2 = sc.nextInt(); 
-                            switch(choix2) {
-                                case 1:
-                                    consulteAuteur();
-                                    break;
-                                case 2:
-                                    modifieAuteur();
-                                    break;
-                                case 3:
-                                    ajouteAuteur();
-                                    break;
-                                case 4:
-                                    supprimeAuteur();
-                                    break;
-                            }
-                            break;
-                        } while (choix2 != 1 && choix2 != 2 && choix2 != 3 && choix2 != 4);
-                        break;                    
+                        sc.nextLine();
+                        switch(choix2) {
+                            case 1:
+                                consulteAuteur();
+                                break;
+                            case 2:
+                                modifieAuteur();
+                                break;
+                            case 3:
+                                ajouteAuteur();
+                                break;
+                            case 4:
+                                supprimeAuteur();
+                                break;
+                        }
+                        break;
                     case 3: // Livre
                         montrerCRUD("livre");
+                        choix2 = sc.nextInt();
+                        sc.nextLine();
                         choix2 = sc.nextInt(); 
-                        do {
-                            choix2 = sc.nextInt(); 
-                            switch(choix2) {
-                                case 1:
-                                    consulteLivre();
-                                    break;
-                                case 2:
-                                    modifieLivre();
-                                    break;
-                                case 3:
-                                    ajouteLivre();
-                                    break;
-                                case 4:
-                                    supprimeLivre();
-                                    break;
-                            }
-                            break;
-                        } while (choix2 != 1 && choix2 != 2 && choix2 != 3 && choix2 != 4);
-                        break;                    
+                        switch(choix2) {
+                            case 1:
+                                consulteLivre();
+                                break;
+                            case 2:
+                                modifieLivre();
+                                break;
+                            case 3:
+                                ajouteLivre();
+                                break;
+                            case 4:
+                                supprimeLivre();
+                                break;
+                        }
+                        break;
                     case 4:
                         gererEmprunt();
                         break;
@@ -199,12 +199,12 @@ public class MenuEmploye {
                         System.out.println("Saisie invalide. Choisissez 1, 2, 3, ou 4.");
                         break;
                 }
-            } catch (InputMismatchException e) {
+            } catch (NoSuchElementException e) {
                 System.out.println("Saisie de type invalide.");
-                sc.nextLine();
-                montrerAccueil();
+                sc.nextLine();        
             }
-        } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
-
+        } while (choix2 != 1 && choix2 != 2 && choix2 != 3 && choix2 != 4);
     }
+            
+
 }
