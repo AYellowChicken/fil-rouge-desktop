@@ -5,19 +5,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-// import java.util.function.Function;
-// Map<String, Function<Object, Void>> requestHandlers = new HashMap<>();
-// requestHandlers.put("GET", this:consulteAbonne);
-// Without parameters : Map<String, Runnable> requestHandlers = new HashMap<>();
-
 public class MenuEmploye {
 
+    // Instancie DAO
     static java.util.Scanner sc = Scanner.getSc();
     static AbonneDao abonneDao = new AbonneDaoImpl();
     static LivreDao livreDao = new LivreDaoImpl();
     static AuteurDao auteurDao = new AuteurDaoImpl();
     static EmpruntDao EmpruntDao = new EmpruntDaoImpl();
 
+    // Instancie clés de colonnes SQL et noms des colonnes utilisées pour le CRUD
     static LinkedHashMap<String, String> ABONNEFIELDS = new LinkedHashMap<>();
     static { 
         ABONNEFIELDS.put("numéro abonné", "numabonne");
@@ -44,7 +41,7 @@ public class MenuEmploye {
         LIVREFIELDS.put("Nombre de pages", "nbrepages");
     }
 
-
+    // Fonctions de display pour la loop
     public static void montrerAccueil() {
         System.out.println("-Consulter / modifier / ajouter / supprimer abonné (1)");
         System.out.println("-Consulter / modifier / ajouter / supprimer auteur (2)");
@@ -59,6 +56,7 @@ public class MenuEmploye {
         System.out.println("-Supprimer " + objet + " (4)");
     }
 
+    // Les fonctions CRUD commencent ici et utilisent les HashMap de criteres pour effectuer la recherche SQL à l'aide de l'implémentation. Si pas de critère, on sélectionne tout.
     public static void consulteAbonne() {
         LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
         String critere;
@@ -148,16 +146,6 @@ public class MenuEmploye {
 
     }
 
-    // We get the choix int.
-    // We can associate it with a string from an enum.
-    // We can also use it to call a handler based on a hashmap. Right now, the handler is inside the switch case
-    // The current handler does 3 things : Display current state (asking for next choice), take next choice, run corresponding function.
-    // We could simplify this code by taking the choix int, getting the handler function that does... but it's really a bother. Let's just go with the classic shit. Java isn't made for this kind of annoying loops anyway.
-    
-    // 1. Display current state : CRUD Choice
-    // 2. Take next choice
-    // 3. Run handler/nested handler
-
     public static void main(String[] args) {
         
         // Choose operation 1
@@ -173,6 +161,7 @@ public class MenuEmploye {
             }
         } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
 
+        // Choose operation 2
         int choix2 = 0;
         do {
             try {

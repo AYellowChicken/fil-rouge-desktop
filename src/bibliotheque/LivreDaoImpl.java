@@ -104,6 +104,16 @@ public class LivreDaoImpl implements LivreDao {
 		}
 	}
 
+/**
+ * This Java function executes a SQL query to retrieve a list of Livre based on given criteria, with
+ * a maximum of 3 retries in case of failure.
+ * 
+ * @param criteres A HashMap containing search criteria for querying the database table "livre". The
+ * keys of the HashMap represent the column names of the table, and the values represent the search
+ * terms to be matched. The method builds an SQL query based on these criteria and returns a list of
+ * Livre objects that match the search
+ * @return The method is returning a list of Livre objects that match the given criteria.
+ */
 	@Override
 	public List<Livre> consulte(HashMap<String, String> criteres) {
 		Connection conn = Connexion.connexion();

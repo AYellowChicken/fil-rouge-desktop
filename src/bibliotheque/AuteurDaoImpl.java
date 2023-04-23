@@ -33,6 +33,16 @@ public class AuteurDaoImpl implements AuteurDao {
 		return null;
 	}
 
+/**
+ * This Java function executes a SQL query to retrieve a list of authors based on given criteria, with
+ * a maximum of 3 retries in case of failure.
+ * 
+ * @param criteres A HashMap containing search criteria for querying the database table "auteur". The
+ * keys of the HashMap represent the column names of the table, and the values represent the search
+ * terms to be matched. The method builds an SQL query based on these criteria and returns a list of
+ * Auteur objects that match the search
+ * @return The method is returning a list of Auteur objects that match the given criteria.
+ */
 	@Override
 	public List<Auteur> consulte(HashMap<String, String> criteres) {
 		Connection conn = Connexion.connexion();
