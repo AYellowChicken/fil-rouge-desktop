@@ -2,6 +2,7 @@ package bibliotheque;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Connexion {
 
@@ -20,8 +21,12 @@ public class Connexion {
 				// créer l'objet de connexion
 				conn = DriverManager.getConnection(URL, USR, PWD);
 
-			} catch (Exception e) {
+			} catch (SQLException e) {
 				e.printStackTrace();
+				System.exit(-2); // TODO : add retries?
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				System.exit(-1);
 			}
 		}
 
