@@ -18,7 +18,7 @@ public class MenuAbonne {
 
 	public static void main(String[] args) throws Exception {
 
-		// appel static de la classe login
+		// appel static de la classe login qui demande le numéro d'abonné
 		Login.main(args);
 
 		// menu
@@ -27,22 +27,22 @@ public class MenuAbonne {
 	}
 
 	public void Choix() throws Exception {
-		
+
 		boolean flag = false;
-		
+
 		try {
 			do {
 				System.out.println("1 : Consulter la liste de vos emprunts\n2 : Chercher un livre");
 				int select = sc.nextInt();
+
 				switch (select) {
-	
 				case 1:
 					flag = true;
 					EmpruntDao ed = new EmpruntDaoImpl();
 					List<Emprunt> le = ed.findAll();
-	
+
 					for (Emprunt e : le) {
-	
+
 						// afficher la liste de tous ses emprunts et préciser pour chaque ligne si il a
 						// violé les règles
 						System.out.println(e.getNumAbonne() + " " + e.getIsbnLivre() + " " + e.getDateEmprunt() + " "
@@ -53,7 +53,7 @@ public class MenuAbonne {
 					flag = true;
 					Critere();
 					break;
-				default : 
+				default:
 					System.out.println("1 ou 2");
 					break;
 				}
@@ -68,85 +68,91 @@ public class MenuAbonne {
 
 	public void Critere() throws Exception {
 
-		System.out.println("1 : Par auteur\n2 : Par titre\n3 : Par ISBN\n4 : Consultation");
+		boolean flag = false;
 
 		try {
-			int select = sc.nextInt();
-			switch (select) {
+			do {
+				System.out.println("1 : Par auteur\n2 : Par titre\n3 : Par ISBN\n4 : Consultation");
+				int select = sc.nextInt();
 
-			case 1:
-				System.out.println("Donnez le nom de l'auteur");
-				sc.nextLine();
-				saisieCritereString = sc.nextLine();
-				LivreDao ldi1 = new LivreDaoImpl();
-				List<Livre> ll1 = ldi1.findByAuthorName(saisieCritereString);
-				if (ll1.isEmpty()) {
-					System.out.println("Aucun livre ne correspond à ce nom d'auteur");
+				switch (select) {
+				case 1:
+					System.out.println("Donnez le nom de l'auteur");
 					sc.nextLine();
-					Critere();
-				}
+					saisieCritereString = sc.nextLine();
+					LivreDao ldi1 = new LivreDaoImpl();
+					List<Livre> ll1 = ldi1.findByAuthorName(saisieCritereString);
+					if (ll1.isEmpty()) {
+						System.out.println("Aucun livre ne correspond à ce nom d'auteur");
+						sc.nextLine();
+						Critere();
+					}
 
-				for (Livre l : ll1) {
+					for (Livre l : ll1) {
 
-					// afficher la liste de tous les livres qui correspondent au nom d'auteur saisi
-					// par l'abonné
-					// violé les règles
-					System.out.println(l.getIsbnLivre() + " " + l.getEditeur() + " " + l.getNbrePages() + " "
-							+ l.getNumAuteur() + " " + l.getTitre());
-				}
-				break;
+						// afficher la liste de tous les livres qui correspondent au nom d'auteur saisi
+						// par l'abonné
+						// violé les règles
+						System.out.println(l.getIsbnLivre() + " " + l.getEditeur() + " " + l.getNbrePages() + " "
+								+ l.getNumAuteur() + " " + l.getTitre());
+					}
+					break;
 
-			case 2:
-				System.out.println("Donnez le titre du livre");
-				sc.nextLine();
-				saisieCritereString = sc.nextLine();
-				LivreDao ldi2 = new LivreDaoImpl();
-				List<Livre> ll2 = ldi2.findByTitle(saisieCritereString);
-
-				if (ll2.isEmpty()) {
-					System.out.println("Aucun livre ne correspond à ce titre");
+				case 2:
+					System.out.println("Donnez le titre du livre");
 					sc.nextLine();
-					Critere();
-				}
+					saisieCritereString = sc.nextLine();
+					LivreDao ldi2 = new LivreDaoImpl();
+					List<Livre> ll2 = ldi2.findByTitle(saisieCritereString);
 
-				for (Livre l : ll2) {
+					if (ll2.isEmpty()) {
+						System.out.println("Aucun livre ne correspond à ce titre");
+						sc.nextLine();
+						Critere();
+					}
 
-					// afficher la liste de tous les livres qui correspondent au nom d'auteur saisi
-					// par l'abonné
-					// violé les règles
-					System.out.println(l.getIsbnLivre() + " " + l.getEditeur() + " " + l.getNbrePages() + " "
-							+ l.getNumAuteur() + " " + l.getTitre());
-				}
-				break;
-			case 3:
-				System.out.println("Donnez l'ISBN du livre");
-				sc.nextLine();
-				saisieCritereISBN = sc.nextInt();
-				LivreDao ldi3 = new LivreDaoImpl();
-				List<Livre> ll3 = ldi3.findByIsbn(saisieCritereISBN);
+					for (Livre l : ll2) {
 
-				if (ll3.isEmpty()) {
-					System.out.println("Aucun livre ne correspond à cet identifiant ISBN");
+						// afficher la liste de tous les livres qui correspondent au nom d'auteur saisi
+						// par l'abonné
+						// violé les règles
+						System.out.println(l.getIsbnLivre() + " " + l.getEditeur() + " " + l.getNbrePages() + " "
+								+ l.getNumAuteur() + " " + l.getTitre());
+					}
+					break;
+				case 3:
+					System.out.println("Donnez l'ISBN du livre");
 					sc.nextLine();
-					Critere();
-				}
+					saisieCritereISBN = sc.nextInt();
+					LivreDao ldi3 = new LivreDaoImpl();
+					List<Livre> ll3 = ldi3.findByIsbn(saisieCritereISBN);
 
-				for (Livre l : ll3) {
+					if (ll3.isEmpty()) {
+						System.out.println("Aucun livre ne correspond à cet identifiant ISBN");
+						sc.nextLine();
+						Critere();
+					}
 
-					// afficher la liste de tous les livres qui correspondent au nom d'auteur saisi
-					// par l'abonné
-					// violé les règles
-					System.out.println(l.getIsbnLivre() + " " + l.getEditeur() + " " + l.getNbrePages() + " "
-							+ l.getNumAuteur() + " " + l.getTitre());
+					for (Livre l : ll3) {
+
+						// afficher la liste de tous les livres qui correspondent au nom d'auteur saisi
+						// par l'abonné
+						// violé les règles
+						System.out.println(l.getIsbnLivre() + " " + l.getEditeur() + " " + l.getNbrePages() + " "
+								+ l.getNumAuteur() + " " + l.getTitre());
+					}
+					break;
+				case 4:
+					LivreDao ldi4 = new LivreDaoImpl();
+					ldi4.findAll();
+					break;
+				default:
+					System.out.println("1, 2, 3 ou 4");
+					break;
 				}
-				break;
-			case 4:
-				LivreDao ldi4 = new LivreDaoImpl();
-				ldi4.findAll();
-				break;
-			}
+			} while (!flag);
 		} catch (InputMismatchException e) {
-			System.out.println("Mauvaise saisie");
+			System.out.println("Nombre attendu : 1, 2, 3 ou 4");
 			sc.nextLine();
 			Critere();
 		}
