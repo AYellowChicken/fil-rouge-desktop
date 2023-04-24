@@ -27,30 +27,41 @@ public class MenuAbonne {
 	}
 
 	public void Choix() throws Exception {
-		System.out.println("1 : Consulter la liste de vos emprunts\n2 : Chercher un livre");
-
+		
+		boolean flag = false;
+		
 		try {
-			int select = sc.nextInt();
-			switch (select) {
-
-			case 1:
-				EmpruntDao ed = new EmpruntDaoImpl();
-				List<Emprunt> le = ed.findAll();
-
-				for (Emprunt e : le) {
-
-					// afficher la liste de tous ses emprunts et préciser pour chaque ligne si il a
-					// violé les règles
-					System.out.println(e.getNumAbonne() + " " + e.getIsbnLivre() + " " + e.getDateEmprunt() + " "
-							+ e.getDateRetourEffective() + " " + e.getDateRetourPrevue() + " " + violation(e));
+			do {
+				System.out.println("1 : Consulter la liste de vos emprunts\n2 : Chercher un livre");
+				int select = sc.nextInt();
+				switch (select) {
+	
+				case 1:
+					flag = true;
+					EmpruntDao ed = new EmpruntDaoImpl();
+					List<Emprunt> le = ed.findAll();
+	
+					for (Emprunt e : le) {
+	
+						// afficher la liste de tous ses emprunts et préciser pour chaque ligne si il a
+						// violé les règles
+						System.out.println(e.getNumAbonne() + " " + e.getIsbnLivre() + " " + e.getDateEmprunt() + " "
+								+ e.getDateRetourEffective() + " " + e.getDateRetourPrevue() + " " + violation(e));
+					}
+					break;
+				case 2:
+					flag = true;
+					Critere();
+					break;
+				default : 
+					System.out.println("1 ou 2");
+					break;
 				}
-				break;
-			case 2:
-				Critere();
-			}
+			} while (!flag);
 
 		} catch (InputMismatchException e) {
-			System.out.println("Choix 1 ou 2");
+			System.out.println("Nombre attendu : 1 ou 2");
+			sc.nextLine();
 			Choix();
 		}
 	}
