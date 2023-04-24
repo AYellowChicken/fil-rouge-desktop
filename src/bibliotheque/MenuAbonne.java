@@ -23,10 +23,10 @@ public class MenuAbonne {
 
 		// menu
 		MenuAbonne menu = new MenuAbonne();
-		menu.Choix();
+		menu.choix();
 	}
 
-	public void Choix() throws Exception {
+	public void choix() throws Exception {
 
 		try {
 			System.out.println("1 : Consulter la liste de vos emprunts\n2 : Chercher un livre");
@@ -46,22 +46,22 @@ public class MenuAbonne {
 				}
 				break;
 			case 2:
-				Critere();
+				critere();
 				break;
 			default:
 				System.out.println("1 ou 2");
-				Choix();
+				choix();
 				break;
 			}
 
 		} catch (InputMismatchException e) {
 			System.out.println("Nombre attendu : 1 ou 2");
 			sc.nextLine();
-			Choix();
+			choix();
 		}
 	}
 
-	public void Critere() throws Exception {
+	public void critere() throws Exception {
 
 		try {
 			System.out.println("1 : Par auteur\n2 : Par titre\n3 : Par ISBN\n4 : Consultation");
@@ -133,13 +133,13 @@ public class MenuAbonne {
 				break;
 			default:
 				System.out.println("1, 2, 3 ou 4");
-				Critere();
+				critere();
 				break;
 			}
 		} catch (InputMismatchException e) {
 			System.out.println("Nombre attendu : 1, 2, 3 ou 4");
 			sc.nextLine();
-			Critere();
+			critere();
 		}
 	}
 
