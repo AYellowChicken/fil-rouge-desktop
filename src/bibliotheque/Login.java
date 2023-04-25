@@ -17,7 +17,7 @@ public class Login {
 		return id;
 	}
 
-	public static void main(String[] args) throws Exception {
+	public static void log() throws Exception {
 		// demander le numéro d'abonné à l'utilisateur
 		System.out.println("Veuillez renseigner votre numéro d'abonné");
 

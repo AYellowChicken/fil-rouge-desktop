@@ -7,146 +7,41 @@ import java.util.NoSuchElementException;
 
 public class MenuEmploye {
 
-    // Instancie DAO
-    static java.util.Scanner sc = Scanner.getSc();
-    static AbonneDao abonneDao = new AbonneDaoImpl();
-    static LivreDao livreDao = new LivreDaoImpl();
-    static AuteurDao auteurDao = new AuteurDaoImpl();
-    static EmpruntDao EmpruntDao = new EmpruntDaoImpl();
+	// Instancie DAO
+	static java.util.Scanner sc = Scanner.getSc();
+	static AbonneDao abonneDao = new AbonneDaoImpl();
+	static LivreDao livreDao = new LivreDaoImpl();
+	static AuteurDao auteurDao = new AuteurDaoImpl();
+	static EmpruntDao EmpruntDao = new EmpruntDaoImpl();
 
-    // Instancie clés de colonnes SQL et noms des colonnes utilisées pour le CRUD
-    static LinkedHashMap<String, String> ABONNEFIELDS = new LinkedHashMap<>();
-    static { 
-        ABONNEFIELDS.put("numéro abonné", "numabonne");
-        ABONNEFIELDS.put("nom abonné", "nomab");
-        ABONNEFIELDS.put("prenom abonné", "prenomab");
-        ABONNEFIELDS.put("adresse abonné", "adresseab");
-        ABONNEFIELDS.put("téléphone abonné", "telephoneab");
-    }    
-    
-    static LinkedHashMap<String, String> AUTEURFIELDS = new LinkedHashMap<>();
-    static { 
-        AUTEURFIELDS.put("Numéro auteur", "numauteur");
-        AUTEURFIELDS.put("nom auteur", "nomau");
-        AUTEURFIELDS.put("prenom auteur", "prenomau");
-        AUTEURFIELDS.put("nationalité auteur", "nationaliteau");
-    }    
-    
-    static LinkedHashMap<String, String> LIVREFIELDS = new LinkedHashMap<>();
-    static { 
-        LIVREFIELDS.put("ISBN livre", "isbnlivre");
-        LIVREFIELDS.put("Titre", "titre");
-        LIVREFIELDS.put("Numéro auteur", "numauteur");
-        LIVREFIELDS.put("Editeur", "editeur");
-        LIVREFIELDS.put("Nombre de pages", "nbrepages");
-    }
+	// Instancie clés de colonnes SQL et noms des colonnes utilisées pour le CRUD
+	static LinkedHashMap<String, String> ABONNEFIELDS = new LinkedHashMap<>();
+	static {
+		ABONNEFIELDS.put("numéro abonné", "numabonne");
+		ABONNEFIELDS.put("nom abonné", "nomab");
+		ABONNEFIELDS.put("prenom abonné", "prenomab");
+		ABONNEFIELDS.put("adresse abonné", "adresseab");
+		ABONNEFIELDS.put("téléphone abonné", "telephoneab");
+	}
 
-    // Fonctions de display pour la loop
-    public static void montrerAccueil() {
-        System.out.println("-Consulter / modifier / ajouter / supprimer abonné (1)");
-        System.out.println("-Consulter / modifier / ajouter / supprimer auteur (2)");
-        System.out.println("-Consulter / modifier / ajouter / supprimer livre (3)");
-        System.out.println("-Gérer emprunt (4)");
-    }
+	static LinkedHashMap<String, String> AUTEURFIELDS = new LinkedHashMap<>();
+	static {
+		AUTEURFIELDS.put("Numéro auteur", "numauteur");
+		AUTEURFIELDS.put("nom auteur", "nomau");
+		AUTEURFIELDS.put("prenom auteur", "prenomau");
+		AUTEURFIELDS.put("nationalité auteur", "nationaliteau");
+	}
 
-    public static void montrerCRUD(String objet) {
-        System.out.println("-Consulter " + objet + " (1)");
-        System.out.println("-Modifier " + objet + " (2)");
-        System.out.println("-Ajouter " + objet + " (3)");
-        System.out.println("-Supprimer " + objet + " (4)");
-    }
-
-    // Les fonctions CRUD commencent ici et utilisent les HashMap de criteres pour effectuer la recherche SQL à l'aide de l'implémentation. Si pas de critère, on sélectionne tout.
-    public static void consulteAbonne() {
-        LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
-        String critere;
-        for (Map.Entry<String, String> entry : ABONNEFIELDS.entrySet()) {
-            System.out.println("Critère " + entry.getKey() + " ?");
-            critere = sc.nextLine();
-            if (!critere.isEmpty()) {
-                criteres.put(entry.getValue(), critere); // e.g. "{numabonne, 2}"
-            }
-        }
-        List<Abonne> abonnes = abonneDao.consulte(criteres);
-        for (Abonne abonne : abonnes) {
-            abonne.prettyPrint();
-        }
-    }
-
-    public static void modifieAbonne() {
-
-    }
-    
-    public static void ajouteAbonne() {
-
-    }
-    
-    public static void supprimeAbonne() {
-
-    }
-
-    public static void consulteAuteur() {
-        LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
-        String critere;
-        for (Map.Entry<String, String> entry : AUTEURFIELDS.entrySet()) {
-            System.out.println("Critère " + entry.getKey() + " ?");
-            critere = sc.nextLine();
-            if (!critere.isEmpty()) {
-                criteres.put(entry.getValue(), critere);
-            }
-        }
-        List<Auteur> auteurs = auteurDao.consulte(criteres);
-        for (Auteur auteur: auteurs) {
-            auteur.prettyPrint();
-        }
-    }
-    
-    public static void modifieAuteur() {
-    
-    }
-    
-    public static void ajouteAuteur() {
-    
-    }
-    
-    public static void supprimeAuteur() {
-    
-    }
-
-    public static void consulteLivre() {
-        LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
-        String critere;
-        for (Map.Entry<String, String> entry : LIVREFIELDS.entrySet()) {
-            System.out.println("Critère " + entry.getKey() + " ?");
-            critere = sc.nextLine();
-            if (!critere.isEmpty()) {
-                criteres.put(entry.getValue(), critere);
-            }
-        }
-        List<Livre> livres = livreDao.consulte(criteres);
-        for (Livre livre: livres) {
-            livre.prettyPrint();
-        }
-
-    }
-    
-    public static void modifieLivre() {
-    
-    }
-    
-    public static void ajouteLivre() {
-    
-    }
-    
-    public static void supprimeLivre() {
-    
-    }
-
-    public static void gererEmprunt() {
-
-    }
-
-    public static void main(String[] args) {
+	static LinkedHashMap<String, String> LIVREFIELDS = new LinkedHashMap<>();
+	static {
+		LIVREFIELDS.put("ISBN livre", "isbnlivre");
+		LIVREFIELDS.put("Titre", "titre");
+		LIVREFIELDS.put("Numéro auteur", "numauteur");
+		LIVREFIELDS.put("Editeur", "editeur");
+		LIVREFIELDS.put("Nombre de pages", "nbrepages");
+	}
+	
+	public static void main(String[] args) {
         
         // Choose operation 1
         int choix = 0;
@@ -235,6 +130,115 @@ public class MenuEmploye {
             }
         } while (choix2 != 1 && choix2 != 2 && choix2 != 3 && choix2 != 4);
     }
-            
+
+	// Fonctions de display pour la loop
+	public static void montrerAccueil() {
+		System.out.println("-Consulter / modifier / ajouter / supprimer abonné (1)");
+		System.out.println("-Consulter / modifier / ajouter / supprimer auteur (2)");
+		System.out.println("-Consulter / modifier / ajouter / supprimer livre (3)");
+		System.out.println("-Gérer emprunt (4)");
+	}
+
+	public static void montrerCRUD(String objet) {
+		System.out.println("-Consulter " + objet + " (1)");
+		System.out.println("-Modifier " + objet + " (2)");
+		System.out.println("-Ajouter " + objet + " (3)");
+		System.out.println("-Supprimer " + objet + " (4)");
+	}
+
+	// Les fonctions CRUD commencent ici et utilisent les HashMap de criteres pour
+	// effectuer la recherche SQL à l'aide de l'implémentation. Si pas de critère,
+	// on sélectionne tout.
+	public static void consulteAbonne() {
+		LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
+		String critere;
+		for (Map.Entry<String, String> entry : ABONNEFIELDS.entrySet()) {
+			System.out.println("Critère " + entry.getKey() + " ?");
+			critere = sc.nextLine();
+			if (!critere.isEmpty()) {
+				criteres.put(entry.getValue(), critere); // e.g. "{numabonne, 2}"
+			}
+		}
+		List<Abonne> abonnes = abonneDao.consulte(criteres);
+		for (Abonne abonne : abonnes) {
+			abonne.prettyPrint();
+		}
+	}
+
+	// TODO
+	public static void modifieAbonne() {
+
+	}
+
+	public static void ajouteAbonne() {
+
+	}
+
+	public static void supprimeAbonne() {
+
+	}
+
+	public static void consulteAuteur() {
+		LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
+		String critere;
+		for (Map.Entry<String, String> entry : AUTEURFIELDS.entrySet()) {
+			System.out.println("Critère " + entry.getKey() + " ?");
+			critere = sc.nextLine();
+			if (!critere.isEmpty()) {
+				criteres.put(entry.getValue(), critere);
+			}
+		}
+		List<Auteur> auteurs = auteurDao.consulte(criteres);
+		for (Auteur auteur : auteurs) {
+			auteur.prettyPrint();
+		}
+	}
+
+	// TODO
+	public static void modifieAuteur() {
+
+	}
+
+	public static void ajouteAuteur() {
+
+	}
+
+	public static void supprimeAuteur() {
+
+	}
+
+	public static void consulteLivre() {
+		LinkedHashMap<String, String> criteres = new LinkedHashMap<>();
+		String critere;
+		for (Map.Entry<String, String> entry : LIVREFIELDS.entrySet()) {
+			System.out.println("Critère " + entry.getKey() + " ?");
+			critere = sc.nextLine();
+			if (!critere.isEmpty()) {
+				criteres.put(entry.getValue(), critere);
+			}
+		}
+		List<Livre> livres = livreDao.consulte(criteres);
+		for (Livre livre : livres) {
+			livre.prettyPrint();
+		}
+
+	}
+
+	// TODO
+	public static void modifieLivre() {
+
+	}
+
+	public static void ajouteLivre() {
+
+	}
+
+	public static void supprimeLivre() {
+
+	}
+
+	public static void gererEmprunt() {
+
+	}
 
 }

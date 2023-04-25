@@ -19,7 +19,7 @@ public class MenuAbonne {
 	public static void main(String[] args) throws Exception {
 
 		// appel static de la classe login qui demande le numéro d'abonné
-		Login.main(args);
+		Login.log();
 
 		// menu
 		MenuAbonne menu = new MenuAbonne();
