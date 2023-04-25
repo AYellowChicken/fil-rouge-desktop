@@ -1,9 +1,13 @@
-package bibliotheque;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.*;
+
+import model.Connexion;
+import model.Emprunt;
+import model.Login;
 
 public class EmpruntDaoImpl implements EmpruntDao {
 

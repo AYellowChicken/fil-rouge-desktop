@@ -1,4 +1,4 @@
-package bibliotheque;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import model.Connexion;
+import model.Livre;
 
 public class LivreDaoImpl implements LivreDao {
 

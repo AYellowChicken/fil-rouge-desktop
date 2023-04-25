@@ -1,4 +1,4 @@
-package bibliotheque;
+package model;
 
 public class Auteur {
 

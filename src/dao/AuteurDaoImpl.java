@@ -1,4 +1,4 @@
-package bibliotheque;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import model.Auteur;
+import model.Connexion;
+
 import java.util.Iterator;
 
 public class AuteurDaoImpl implements AuteurDao {

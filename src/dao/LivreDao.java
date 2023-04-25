@@ -1,7 +1,9 @@
-package bibliotheque;
+package dao;
 
 import java.util.HashMap;
 import java.util.List;
+
+import model.Livre;
 
 public interface LivreDao {
 	void findAll() throws Exception;

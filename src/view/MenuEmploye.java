@@ -1,9 +1,22 @@
-package bibliotheque;
+package view;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+
+import dao.AbonneDao;
+import dao.AbonneDaoImpl;
+import dao.AuteurDao;
+import dao.AuteurDaoImpl;
+import dao.EmpruntDao;
+import dao.EmpruntDaoImpl;
+import dao.LivreDao;
+import dao.LivreDaoImpl;
+import model.Abonne;
+import model.Auteur;
+import model.Livre;
+import model.Scanner;
 
 public class MenuEmploye {
 

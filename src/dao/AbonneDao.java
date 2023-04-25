@@ -1,7 +1,9 @@
-package bibliotheque;
+package dao;
 
 import java.util.HashMap;
 import java.util.List;
+
+import model.Abonne;
 
 public interface AbonneDao {
 	Abonne findById(int id);

@@ -1,4 +1,4 @@
-package bibliotheque;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
+import model.Abonne;
+import model.Connexion;
 
 public class AbonneDaoImpl implements AbonneDao {
 
@@ -24,29 +27,35 @@ public class AbonneDaoImpl implements AbonneDao {
 		return null;
 	}
 
-/**
- *  * This Java function executes a SQL query to retrieve a list of Abonne based on given criteria, with
- * a maximum of 3 retries in case of failure.
- * 
- * @param criteres A HashMap containing search criteria for querying the database table "abonne". The
- * keys of the HashMap represent the column names of the table, and the values represent the search
- * terms to be matched. The method builds an SQL query based on these criteria and returns a list of
- * Abonne objects that match the search
- * @return The method is returning a list of Abonne objects that match the given criteria.
- */
+	/**
+	 * * This Java function executes a SQL query to retrieve a list of Abonne based
+	 * on given criteria, with a maximum of 3 retries in case of failure.
+	 * 
+	 * @param criteres A HashMap containing search criteria for querying the
+	 *                 database table "abonne". The keys of the HashMap represent
+	 *                 the column names of the table, and the values represent the
+	 *                 search terms to be matched. The method builds an SQL query
+	 *                 based on these criteria and returns a list of Abonne objects
+	 *                 that match the search
+	 * @return The method is returning a list of Abonne objects that match the given
+	 *         criteria.
+	 */
 	@Override
 	public List<Abonne> consulte(HashMap<String, String> criteres) {
 		Connection conn = Connexion.connexion();
-		
+
 		// Build SQL query
 		String sqlRequest = "SELECT numabonne, nomab, prenomab, adresseab, telephoneab FROM abonne";
+
 		if (!criteres.isEmpty()) {
 			sqlRequest += " WHERE ";
-
 			Iterator<Map.Entry<String, String>> iterator = criteres.entrySet().iterator();
+
 			while (iterator.hasNext()) {
+
 				Map.Entry<String, String> entry = iterator.next();
-				if (entry.getKey().equals("numabonne")){ 
+
+				if (entry.getKey().equals("numabonne")) {
 					sqlRequest += entry.getKey() + " = " + entry.getValue();
 				} else if (entry.getKey().equals("telephoneab")) {
 					sqlRequest += entry.getKey() + " LIKE '%" + entry.getValue() + "%'";
@@ -60,12 +69,15 @@ public class AbonneDaoImpl implements AbonneDao {
 				}
 			}
 		}
+		
 		// Execute SQL query (maximum of 3 times)
 		int maxRetries = 3;
 		int retries = 0;
 		boolean success = false;
+		
 		List<Abonne> listAbonne = new ArrayList<Abonne>();
-		while(!success && retries < maxRetries) {
+		
+		while (!success && retries < maxRetries) {
 			try {
 				PreparedStatement ps = conn.prepareStatement(sqlRequest);
 				ResultSet rs = ps.executeQuery();
@@ -119,5 +131,4 @@ public class AbonneDaoImpl implements AbonneDao {
 		// TODO Auto-generated method stub
 
 	}
-
 }

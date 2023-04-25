@@ -1,6 +1,8 @@
-package bibliotheque;
+package dao;
 
 import java.util.List;
+
+import model.Emprunt;
 
 public interface EmpruntDao {
 	void findById(int id);
