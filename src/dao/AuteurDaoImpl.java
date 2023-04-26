@@ -1,6 +1,7 @@
 package dao;
 
 import java.sql.Connection;
+import java.util.Scanner;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -119,10 +120,28 @@ public class AuteurDaoImpl implements AuteurDao {
 	}
 
 	@Override
-	public void save(Auteur auteur) {
+	public void save() {
 		// TODO Auto-generated method stub
-
-	}
+		Connection conn = Connexion.connexion();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrez N° auteur: ");
+		int numAuteur = sc.nextInt();
+		System.out.println("Entrez Nom auteur: ");
+		String nomAuteur = sc.next();
+		System.out.println("Entrez Prénom auteur: ");
+		String prenomAuteur = sc.next();
+		System.out.println("Entrez Nationalité auteur: ");
+		String nationaliteAuteur = sc.next();
+	
+			String sqlRequest = "INSERT INTO auteur VALUES("+numAuteur+",'"+ nomAuteur+"','" +prenomAuteur + "','" +nationaliteAuteur+"')" ;
+			try {
+				PreparedStatement st = conn.prepareStatement(sqlRequest);
+				ResultSet result = st.executeQuery();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				}
 
 	@Override
 	public void update(Auteur auteur) {
@@ -131,8 +150,26 @@ public class AuteurDaoImpl implements AuteurDao {
 	}
 
 	@Override
-	public void delete(Auteur auteur) {
+	public void delete() {
+		Connection conn = Connexion.connexion();
+		
 		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrez le N° de l'auteur à supprimer");
+		int numAuteur = sc.nextInt();
+		
+		String sqlRequest = "DELETE FROM auteur WHERE numauteur = "+ numAuteur;
+		
+		try {PreparedStatement st = conn.prepareStatement(sqlRequest);
+		ResultSet result = st.executeQuery();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 
 	}
 }

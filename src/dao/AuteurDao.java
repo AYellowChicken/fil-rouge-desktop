@@ -13,9 +13,9 @@ public interface AuteurDao {
 
 	List<Auteur> consulte(HashMap<String, String> criteres) ;
 
-	void save(Auteur auteur);
+	void save();
 
 	void update(Auteur auteur);
 
-	void delete(Auteur auteur);
+	void delete();
 }

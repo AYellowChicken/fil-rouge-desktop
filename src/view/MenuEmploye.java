@@ -208,11 +208,13 @@ public class MenuEmploye {
 	}
 
 	public static void ajouteAuteur() {
-
+		AuteurDaoImpl auteurDaoImpl = new AuteurDaoImpl();
+		auteurDaoImpl.save();
 	}
 
 	public static void supprimeAuteur() {
-
+		AuteurDaoImpl auteurDaoImpl = new AuteurDaoImpl();
+		auteurDaoImpl.delete();
 	}
 
 	public static void consulteLivre() {
