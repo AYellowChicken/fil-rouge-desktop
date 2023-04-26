@@ -54,12 +54,14 @@ public class MenuEmploye {
 		LIVREFIELDS.put("Nombre de pages", "nbrepages");
 	}
 	
+	static final String accueilMessage = "-Consulter / modifier / ajouter / supprimer abonné (1)\n-Consulter / modifier / ajouter / supprimer auteur (2)\n-Consulter / modifier / ajouter / supprimer livre (3)\n-Gérer emprunt (4)";
+
 	public static void main(String[] args) {
         
         // Choose operation 1
         int choix = 0;
         do {
-            montrerAccueil();
+            System.out.println(accueilMessage);
             try {
                 choix = sc.nextInt();
             } catch (NoSuchElementException e) {
@@ -144,14 +146,7 @@ public class MenuEmploye {
         } while (choix2 != 1 && choix2 != 2 && choix2 != 3 && choix2 != 4);
     }
 
-	// Fonctions de display pour la loop
-	public static void montrerAccueil() {
-		System.out.println("-Consulter / modifier / ajouter / supprimer abonné (1)");
-		System.out.println("-Consulter / modifier / ajouter / supprimer auteur (2)");
-		System.out.println("-Consulter / modifier / ajouter / supprimer livre (3)");
-		System.out.println("-Gérer emprunt (4)");
-	}
-
+	// Fonction de display pour la loop
 	public static void montrerCRUD(String objet) {
 		System.out.println("-Consulter " + objet + " (1)");
 		System.out.println("-Modifier " + objet + " (2)");
