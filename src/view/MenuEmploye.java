@@ -175,7 +175,9 @@ public class MenuEmploye {
 
 	// TODO
 	public static void modifieAbonne() {
-
+		AbonneDaoImpl abonneDaoImpl = new AbonneDaoImpl();
+		abonneDaoImpl.update();
+		
 	}
 
 	public static void ajouteAbonne() {

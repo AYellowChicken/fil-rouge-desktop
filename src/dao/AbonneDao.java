@@ -17,4 +17,6 @@ public interface AbonneDao {
 	void update(Abonne abonne);
 
 	void delete(Abonne abonne);
+
+	void update();
 }

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import model.Abonne;
 import model.Connexion;
@@ -122,8 +123,34 @@ public class AbonneDaoImpl implements AbonneDao {
 	}
 
 	@Override
-	public void update(Abonne abonne) {
-		// TODO Auto-generated method stub
+	public void update() {
+		Connection conn = Connexion.connexion();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrez N° abonne: ");
+		int numAbonne = sc.nextInt();
+		System.out.println("Entrez Nom abonne: ");
+		String nomAb = sc.next();
+		System.out.println("Entrez Prénom abonne: ");
+		String prenomAb = sc.next();
+		System.out.println("Entrez Telephone abonne: ");
+		String telephoneAb = sc.next();
+		try {
+			
+			
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE abonne SET nomAb = ?, prenomAb = ?, telephoneAb =?  WHERE numAbonne = ?");
+			
+			pstmt.setString(1, nomAb);
+			pstmt.setString(2, prenomAb);
+			pstmt.setString(3, telephoneAb);
+			
+			pstmt.setInt(4, numAbonne); // Update the record with id = numAuteur
+			
+			int rowsUpdated = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -131,5 +158,11 @@ public class AbonneDaoImpl implements AbonneDao {
 	public void delete(Abonne abonne) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void update(Abonne abonne) {
+		// TODO Auto-generated method stub
+		
 	}
 }
