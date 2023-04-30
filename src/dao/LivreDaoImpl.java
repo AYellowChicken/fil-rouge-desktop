@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import model.Connexion;
 import model.Livre;
@@ -192,8 +193,36 @@ public class LivreDaoImpl implements LivreDao {
 	}
 
 	@Override
-	public void update(Livre book) {
+	public void update() {
 		// TODO Auto-generated method stub
+		Connection conn = Connexion.connexion();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrez N° isbnLivre: ");
+		int isbnLivre = sc.nextInt();
+		System.out.println("Entrez titre Livre: ");
+		String titre = sc.next();
+		System.out.println("Entrez nom editeur LIvre: ");
+		String editeur = sc.next();
+		System.out.println("Entrez nbrePages LIvre: ");
+		int nbrePages = sc.nextInt();
+		try {
+			
+			
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE livre SET titre = ?, editeur = ?, nbrePages =?  WHERE isbnLivre = ?");
+			
+			pstmt.setString(1, titre);
+			pstmt.setString(2, editeur);
+			pstmt.setInt(3, nbrePages);
+			
+			pstmt.setInt(4, isbnLivre); // Update the record with id = numAuteur
+			
+			int rowsUpdated = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 
 	}
 
@@ -201,5 +230,11 @@ public class LivreDaoImpl implements LivreDao {
 	public void delete(Livre book) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void update(Livre book) {
+		// TODO Auto-generated method stub
+		
 	}
 }

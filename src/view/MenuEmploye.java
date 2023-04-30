@@ -239,7 +239,8 @@ public class MenuEmploye {
 
 	// TODO
 	public static void modifieLivre() {
-
+		LivreDaoImpl livreDaoImpl =new LivreDaoImpl();
+		livreDaoImpl.update();
 	}
 
 	public static void ajouteLivre() {

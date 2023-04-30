@@ -21,4 +21,6 @@ public interface LivreDao {
 	List<Livre> findByTitle(String title) throws Exception;
 
 	List<Livre> findByIsbn(int isbn) throws Exception;
+
+	void update();
 }
