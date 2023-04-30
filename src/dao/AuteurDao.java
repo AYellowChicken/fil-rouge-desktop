@@ -18,4 +18,6 @@ public interface AuteurDao {
 	void update(Auteur auteur);
 
 	void delete();
+
+	void update();
 }

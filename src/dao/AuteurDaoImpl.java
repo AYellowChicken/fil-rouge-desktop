@@ -144,8 +144,36 @@ public class AuteurDaoImpl implements AuteurDao {
 				}
 
 	@Override
-	public void update(Auteur auteur) {
+	public void update() {
 		// TODO Auto-generated method stub
+		
+		Connection conn = Connexion.connexion();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrez N° auteur: ");
+		int numAuteur = sc.nextInt();
+		System.out.println("Entrez Nom auteur: ");
+		String nomAuteur = sc.next();
+		System.out.println("Entrez Prénom auteur: ");
+		String prenomAuteur = sc.next();
+		System.out.println("Entrez Nationalité auteur: ");
+		String nationaliteAuteur = sc.next();
+		try {
+			
+			
+			PreparedStatement pstmt = conn.prepareStatement("UPDATE auteur SET nomau = ?, prenomau = ?, nationaliteau =?  WHERE numauteur = ?");
+			
+			pstmt.setString(1, nomAuteur);
+			pstmt.setString(2, prenomAuteur);
+			pstmt.setString(3, nationaliteAuteur);
+			
+			pstmt.setInt(4, numAuteur); // Update the record with id = numAuteur
+			
+			int rowsUpdated = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -171,5 +199,11 @@ public class AuteurDaoImpl implements AuteurDao {
 		
 		
 
+	}
+
+	@Override
+	public void update(Auteur auteur) {
+		// TODO Auto-generated method stub
+		
 	}
 }

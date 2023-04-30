@@ -204,7 +204,8 @@ public class MenuEmploye {
 
 	// TODO
 	public static void modifieAuteur() {
-
+		AuteurDaoImpl auteurDaoImpl = new AuteurDaoImpl();
+		auteurDaoImpl.update();
 	}
 
 	public static void ajouteAuteur() {
