@@ -151,11 +151,11 @@ public class AuteurDaoImpl implements AuteurDao {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entrez N° auteur: ");
 		int numAuteur = sc.nextInt();
-		System.out.println("Entrez Nom auteur: ");
+		System.out.println("Modifier Nom auteur: ");
 		String nomAuteur = sc.next();
-		System.out.println("Entrez Prénom auteur: ");
+		System.out.println("Modifier Prénom auteur: ");
 		String prenomAuteur = sc.next();
-		System.out.println("Entrez Nationalité auteur: ");
+		System.out.println("Modifier Nationalité auteur: ");
 		String nationaliteAuteur = sc.next();
 		try {
 			

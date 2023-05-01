@@ -197,14 +197,18 @@ public class LivreDaoImpl implements LivreDao {
 		// TODO Auto-generated method stub
 		Connection conn = Connexion.connexion();
 		Scanner sc = new Scanner(System.in);
+		Scanner scInt = new Scanner(System.in);
+		
 		System.out.println("Entrez N° isbnLivre: ");
-		int isbnLivre = sc.nextInt();
-		System.out.println("Entrez titre Livre: ");
-		String titre = sc.next();
-		System.out.println("Entrez nom editeur LIvre: ");
-		String editeur = sc.next();
-		System.out.println("Entrez nbrePages LIvre: ");
-		int nbrePages = sc.nextInt();
+		int isbnLivre = scInt.nextInt();
+		//int isbnLivre = input.nextInt();
+		System.out.println("Modifier titre Livre: ");
+		//sc.useDelimiter("\n");
+		String titre = sc.nextLine();
+		System.out.println("Modifier nom editeur LIvre: ");
+		String editeur = sc.nextLine();
+		System.out.println("Modifier nbrePages LIvre: ");
+		int nbrePages = scInt.nextInt();
 		try {
 			
 			

@@ -126,14 +126,16 @@ public class AbonneDaoImpl implements AbonneDao {
 	public void update() {
 		Connection conn = Connexion.connexion();
 		Scanner sc = new Scanner(System.in);
+		Scanner scInt = new Scanner(System.in);
+		
 		System.out.println("Entrez N° abonne: ");
-		int numAbonne = sc.nextInt();
-		System.out.println("Entrez Nom abonne: ");
-		String nomAb = sc.next();
-		System.out.println("Entrez Prénom abonne: ");
-		String prenomAb = sc.next();
-		System.out.println("Entrez Telephone abonne: ");
-		String telephoneAb = sc.next();
+		int numAbonne = scInt.nextInt();
+		System.out.println("Modifier Nom abonne: ");
+		String nomAb = sc.nextLine();
+		System.out.println("Modifier Prénom abonne: ");
+		String prenomAb = sc.nextLine();
+		System.out.println("Modifier Telephone abonne: ");
+		String telephoneAb = sc.nextLine();
 		try {
 			
 			
