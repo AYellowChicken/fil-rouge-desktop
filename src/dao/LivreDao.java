@@ -23,4 +23,6 @@ public interface LivreDao {
 	List<Livre> findByIsbn(int isbn) throws Exception;
 
 	void update();
+
+	void delete();
 }

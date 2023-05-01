@@ -231,13 +231,36 @@ public class LivreDaoImpl implements LivreDao {
 	}
 
 	@Override
-	public void delete(Livre book) {
+	public void delete() {
+		
 		// TODO Auto-generated method stub
+		Connection conn = Connexion.connexion();
+
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrez le N° de isbnlivre à supprimer");
+		int isbnLivre = sc.nextInt();
+		
+		//String sqlRequest = "DELETE FROM livre WHERE numabonne = "+ isbnLivre;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM livre WHERE isbnlivre = ?");
+			pstmt.setInt(1, isbnLivre);
+			int rowsDeleted = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void update(Livre book) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Livre book) {
 		// TODO Auto-generated method stub
 		
 	}

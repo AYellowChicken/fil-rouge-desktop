@@ -186,17 +186,15 @@ public class AuteurDaoImpl implements AuteurDao {
 		System.out.println("Entrez le N° de l'auteur à supprimer");
 		int numAuteur = sc.nextInt();
 		
-		String sqlRequest = "DELETE FROM auteur WHERE numauteur = "+ numAuteur;
-		
-		try {PreparedStatement st = conn.prepareStatement(sqlRequest);
-		ResultSet result = st.executeQuery();
-		}
-		catch(SQLException e) {
+		//String sqlRequest = "DELETE FROM auteur WHERE numauteur = "+ numAuteur;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM auteur WHERE numauteur = ?");
+			pstmt.setInt(1, numAuteur);
+			int rowsDeleted = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 		
 
 	}

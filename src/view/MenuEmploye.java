@@ -185,7 +185,8 @@ public class MenuEmploye {
 	}
 
 	public static void supprimeAbonne() {
-
+		AbonneDaoImpl abonneDaoImpl = new AbonneDaoImpl();
+		abonneDaoImpl.delete();
 	}
 
 	public static void consulteAuteur() {
@@ -248,7 +249,8 @@ public class MenuEmploye {
 	}
 
 	public static void supprimeLivre() {
-
+		LivreDaoImpl livreDaoImpl =new LivreDaoImpl();
+		livreDaoImpl.delete();
 	}
 
 	public static void gererEmprunt() {

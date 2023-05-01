@@ -157,13 +157,33 @@ public class AbonneDaoImpl implements AbonneDao {
 	}
 
 	@Override
-	public void delete(Abonne abonne) {
+	public void delete() {
+Connection conn = Connexion.connexion();
+		
 		// TODO Auto-generated method stub
-
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Entrez le N° de l'auteur à supprimer");
+		int numAbonne = sc.nextInt();
+		
+		//String sqlRequest = "DELETE FROM auteur WHERE numabonne = "+ numAbonne;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM auteur WHERE numauteur = ?");
+			pstmt.setInt(1, numAbonne);
+			int rowsDeleted = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void update(Abonne abonne) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Abonne abonne) {
 		// TODO Auto-generated method stub
 		
 	}
