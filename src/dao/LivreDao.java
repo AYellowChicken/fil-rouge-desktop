@@ -12,9 +12,9 @@ public interface LivreDao {
 	
 	void save();
 
-	void update(Livre book);
+	void update();
 
-	void delete(Livre book);
+	void delete();
 
 	List<Livre> findByAuthorName(String authorName) throws Exception;
 

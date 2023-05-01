@@ -197,15 +197,4 @@ Connection conn = Connexion.connexion();
 		}
 	}
 
-	@Override
-	public void update(Abonne abonne) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Abonne abonne) {
-		// TODO Auto-generated method stub
-		
-	}
 }

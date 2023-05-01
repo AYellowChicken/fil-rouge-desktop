@@ -15,9 +15,9 @@ public interface AuteurDao {
 
 	void save();
 
-	void update(Auteur auteur);
+	void update();
 
 	void delete();
 
-	void update();
+
 }

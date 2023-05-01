@@ -274,15 +274,5 @@ public class LivreDaoImpl implements LivreDao {
 
 	}
 
-	@Override
-	public void update(Livre book) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void delete(Livre book) {
-		// TODO Auto-generated method stub
-		
-	}
 }

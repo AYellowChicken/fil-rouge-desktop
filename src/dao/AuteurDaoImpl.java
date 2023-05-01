@@ -199,9 +199,5 @@ public class AuteurDaoImpl implements AuteurDao {
 
 	}
 
-	@Override
-	public void update(Auteur auteur) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

@@ -14,9 +14,9 @@ public interface AbonneDao {
 
 	void save();
 
-	void update(Abonne abonne);
+	void update();
 
-	void delete(Abonne abonne);
+	void delete();
 
 	void update();
 
