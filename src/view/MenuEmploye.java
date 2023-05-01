@@ -256,7 +256,36 @@ public class MenuEmploye {
 	}
 
 	public static void gererEmprunt() {
-
+		
+		System.out.println("veuillez rentrer votre numero d'abonne");
+		int numabo= sc.nextInt(); 
+		System.out.println("veuillez rentrer le numero ISBNLivre");
+		int isbnLivre = sc.nextInt();
+		System.out.println("cas 1: rendre un livre,  cas 2: emprunter un livre");
+        //int choix3 = 0;
+        int choix3 = sc.nextInt();
+        /*
+        do {
+            System.out.println(accueilMessage);
+            try {
+                choix3 = sc.nextInt();
+            } catch (NoSuchElementException e) {
+                System.out.println("Saisie de type invalide.");
+                sc.nextLine();
+            }
+        } while(choix3 != 1 && choix3 != 2);
+        */
+        EmpruntDaoImpl empruntDaoImpl = new EmpruntDaoImpl();
+		switch(choix3) {
+		case 2 :
+			empruntDaoImpl.save(numabo, isbnLivre);	
+			break;
+			
+		case 1 :
+			empruntDaoImpl.update();
+			break;
+		}
+				
 	}
 
 }

@@ -9,9 +9,9 @@ public interface EmpruntDao {
 
 	List<Emprunt> findAll() throws Exception;
 
-	void save(Emprunt emprunt);
+	void save(int a, int b);
 
-	void update(Emprunt emprunt);
+	void update();
 
 	void delete(Emprunt emprunt);
 }

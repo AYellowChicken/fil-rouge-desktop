@@ -3,6 +3,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import model.Connexion;
@@ -46,13 +47,24 @@ public class EmpruntDaoImpl implements EmpruntDao {
 	}
 
 	@Override
-	public void save(Emprunt emprunt) {
+	public void save(int numabonne, int isbnlivre) {
 		// TODO Auto-generated method stub
 
+		Connection conn = Connexion.connexion();
+		
+	
+			String sqlRequest = "INSERT INTO emprunt VALUES("+numabonne+",'"+ isbnlivre+"', NOW()::date ,(NOW() + interval '30 day')::date)" ;
+			try {
+				PreparedStatement st = conn.prepareStatement(sqlRequest);
+				int result = st.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	@Override
-	public void update(Emprunt emprunt) {
+	public void update() {
 		// TODO Auto-generated method stub
 
 	}
