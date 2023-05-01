@@ -12,7 +12,7 @@ public interface AbonneDao {
 
 	List<Abonne> consulte(HashMap<String, String> criteres) ;
 
-	void save(Abonne abonne);
+	void save();
 
 	void update(Abonne abonne);
 

@@ -136,7 +136,7 @@ public class AuteurDaoImpl implements AuteurDao {
 			String sqlRequest = "INSERT INTO auteur VALUES("+numAuteur+",'"+ nomAuteur+"','" +prenomAuteur + "','" +nationaliteAuteur+"')" ;
 			try {
 				PreparedStatement st = conn.prepareStatement(sqlRequest);
-				ResultSet result = st.executeQuery();
+				int result = st.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

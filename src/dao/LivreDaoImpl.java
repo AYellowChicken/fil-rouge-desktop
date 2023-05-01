@@ -187,9 +187,30 @@ public class LivreDaoImpl implements LivreDao {
 
 
 	@Override
-	public void save(Livre book) {
+	public void save() {
 		// TODO Auto-generated method stub
-
+		Connection conn = Connexion.connexion();
+		Scanner sc = new Scanner(System.in);
+		Scanner texte = new Scanner(System.in);
+		System.out.println("Entrez N° Livre: ");
+		int numLivre = sc.nextInt();
+		System.out.println("Entrez le titre du livre : ");
+		String titreLivre = texte.nextLine();
+		System.out.println("Entrez N° Auteur : ");
+		int numAuteur = sc.nextInt();
+		System.out.println("Entrez l'éditeur: ");
+		String editeur = texte.nextLine();
+		System.out.println("Entrez le nombre de pages: ");
+		int nbDePage = texte.nextInt();
+	
+			String sqlRequest = "INSERT INTO livre VALUES("+numLivre+",'"+ titreLivre+"','" +numAuteur + "','" +editeur+"','"+nbDePage+"')" ;
+			try {
+				PreparedStatement st = conn.prepareStatement(sqlRequest);
+				int result = st.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 
 	@Override

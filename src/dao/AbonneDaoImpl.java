@@ -116,9 +116,30 @@ public class AbonneDaoImpl implements AbonneDao {
 	}
 
 	@Override
-	public void save(Abonne abonne) {
+	public void save() {
 		// TODO Auto-generated method stub
-
+		Connection conn = Connexion.connexion();
+		Scanner sc = new Scanner(System.in);
+		Scanner texte = new Scanner(System.in);
+		System.out.println("Entrez N° Abonné: ");
+		int numAbonne = sc.nextInt();
+		System.out.println("Entrez le nom de l'abonné : ");
+		String nomAb = texte.nextLine();
+		System.out.println("Entrez le prénom de l'abonné : ");
+		String prenomAb = texte.nextLine();
+		System.out.println("Entrez l'adresse mail de l'abonné: ");
+		String adresseAb = texte.nextLine();
+		System.out.println("Entrez le numéro de téléphone de l'abonné: ");
+		String telAb = texte.nextLine();
+	
+			String sqlRequest = "INSERT INTO abonne VALUES("+numAbonne+",'"+ nomAb+"','" +prenomAb + "','" +adresseAb+"','"+telAb+"')" ;
+			try {
+				PreparedStatement st = conn.prepareStatement(sqlRequest);
+				int result = st.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 	}
 
@@ -167,7 +188,7 @@ Connection conn = Connexion.connexion();
 		
 		//String sqlRequest = "DELETE FROM auteur WHERE numabonne = "+ numAbonne;
 		try {
-			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM auteur WHERE numauteur = ?");
+			PreparedStatement pstmt = conn.prepareStatement("DELETE FROM abonne WHERE numabonne = ?");
 			pstmt.setInt(1, numAbonne);
 			int rowsDeleted = pstmt.executeUpdate();
 		} catch (SQLException e) {

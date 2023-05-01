@@ -10,7 +10,7 @@ public interface LivreDao {
 
 	List<Livre> consulte(HashMap<String, String> criteres);
 	
-	void save(Livre book);
+	void save();
 
 	void update(Livre book);
 
