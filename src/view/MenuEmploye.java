@@ -68,13 +68,16 @@ public class MenuEmploye {
                 System.out.println("Saisie de type invalide.");
                 sc.nextLine();
             }
-        } while (choix != 1 && choix != 2 && choix != 3 && choix != 4);
+        } while (choix != 0 && choix != 1 && choix != 2 && choix != 3 && choix != 4);
 
         // Choose operation 2
         int choix2 = 0;
         do {
             try {
                 switch(choix) {
+                	case 0:
+                		System.out.println("Aurevoir");
+                		System.exit(0);
                     case 1: // Abonné
                         montrerCRUD("abonné");
                         choix2 = sc.nextInt();
@@ -143,7 +146,7 @@ public class MenuEmploye {
                 System.out.println("Saisie de type invalide.");
                 sc.nextLine();        
             }
-        } while (choix2 != 1 && choix2 != 2 && choix2 != 3 && choix2 != 4);
+        } while (choix != 0 && choix2 != 0);
     }
 
 	// Fonction de display pour la loop
